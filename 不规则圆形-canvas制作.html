@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui" />
+	<title>new document</title>
+</head>
+<body>
+	<p></p>
+	<canvas width="500" height="500"></canvas>
+	<script>
+     var cvs=document.querySelector("canvas"),g=cvs.getContext("2d");
+	 g.fillStyle="rgba(200,0,0,1)";
+	 g.translate(250,250);
+	 var points=[],radius=150,offset=50;
+	 for(var i=0;i<360;i+=60)
+	 {
+	    points.push({x:Math.cos(i*Math.PI/180)*(radius+Math.random()*offset),y:Math.sin(i*Math.PI/180)*(radius+Math.random()*offset)});
+
+	     points.push({x:Math.cos(i*Math.PI/180)*(Math.random()*offset),y:Math.sin(i*Math.PI/180)*(Math.random()*offset)});
+	 }
+     g.beginPath();
+	 g.moveTo((points[0].x+points[1].x)/2,(points[0].y+points[1].y)/2);
+     for(var j=1;j<points.length-1;j++)
+	 {
+	    g.quadraticCurveTo(points[j].x,points[j].y,(points[j].x+points[j+1].x)/2,(points[j].y+points[j+1].y)/2);
+	 }
+	  g.quadraticCurveTo(points[j].x,points[j].y,(points[j].x+points[0].x)/2,(points[j].y+points[0].y)/2);
+	  g.quadraticCurveTo(points[0].x,points[0].y,(points[0].x+points[1].x)/2,(points[0].y+points[1].y)/2);
+	 g.closePath();
+	  g.fill();
+  </script></body>
+</html>
