@@ -1,0 +1,101 @@
+<!-- 有几个地方要注意，第一，匀速运动块要的left要注意设置 -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>多物体运动</title>
+<script type="text/javascript" src="move.js"></script>
+</head>
+
+<style type="text/css">
+.test {
+
+    height: 45px;
+    line-height: 45px;
+    color: #fefefe;
+    width: 45px;
+    background: red;
+     position: absolute;
+      left: 200px; 
+      top: 30px; 
+}
+</style>
+
+
+<body>
+
+<div  id ="move_div1" class="test" > </div>
+<div  id ="move_div2" class="test" > </div>
+<div  id ="move_div3" class="test" > </div>
+<div  id ="move_div4" class="test" > </div>
+<div  id ="move_div5" class="test" > </div>
+<div  id ="move_div6" class="test" > </div>
+<div  id ="move_div7" class="test" > </div>
+<div  id ="move_div8" class="test" > </div>
+<input type="button" value="开始" id="move_btn" />
+
+
+<input type="button" value="复位" id="move_reset" />
+
+</body>
+<script type = "text/javascript">
+  var move_div = [];
+
+  for (var i = 0; i < 8; i++) {
+    move_div[i] = new Obj();
+    var j = i + 1 + '';
+    move_div[i].divpart = document.getElementById('move_div' + j);
+    move_div[i].divpart.style.top = i * 70 + 'px';
+    move_div[i].startdivleft =  move_div[i].divpart.style.left;
+  }
+
+
+  move_btn.onclick = function() {
+    if (move_btn.value == '开始') {
+      move_div[0].normalMove(0, 0, 900, 900, 10);
+      move_div[1].normalMove(0, 0, 900, 900, 10);
+      move_div[2].moveElastic(200, 400, 600, 3);
+      move_div[3].moveElastic(200, 400, 600, 3);
+      move_div[4].deceMove(0, 2000, 6);
+      move_div[5].deceMove(0, 2000, 6);
+      move_div[6].accMove(0, 1000, 10);
+      move_div[7].accMove(0, 1000, 10);
+      move_btn.value = '暂停';
+    } else if(move_btn.value=='暂停') {
+        for(var i =0;i<8;i++)
+         move_div[i].pause();
+        move_btn.value ='继续';
+    
+    }else{
+        
+       // move_div[0].normalMove(0, move_div[0].divpart.style.left, 900, 900, 10-move_div[0].timeinterval);
+       // move_div[1].normalMove(0, move_div[1].divpart.style.left, 900, 900, 10-move_div[1].timeinterval);
+
+          move_div[2].moveElastic(200, 400, 600, 3);
+          // move_div[3].moveElastic1(200, 400, 600, 3);
+         // move_div[4].deceMove(move_div[4].divpart.offsetLeft, 2000, 6-move_div[4].timeinterval);
+         //  move_div[5].deceMove(move_div[5].divpart.offsetLeft, 2000, 6-move_div[5].timeinterval);
+         //  move_div[6].accMove(move_div[6].divpart.offsetLeft, 3000, 10-move_div[6].timeinterval);
+         //  move_div[7].accMove(move_div[7].divpart.offsetLeft, 3000, 10-move_div[7].timeinterval);
+    }
+    
+
+};
+
+move_reset.onclick = function(){
+     for(var i =0;i<8;i++){
+         move_div[i].pause();
+        move_div[i].divpart.style.left = move_div[i].startdivleft;
+      }
+
+};
+
+
+
+</script>
+</html>
