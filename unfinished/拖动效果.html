@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui" />
+	<title>拖动效果</title>
+	<style type="text/css">
+	.dragmove{
+	height: 23px;
+	width: 32px;
+	margin: 17px 11px 11px 11px;
+	background: #c5c1bb;
+	}
+	</style>
+</head>
+<body>
+	<!-- <p></p>
+-->
+<!-- <canvas width="500" height="500" color='red'></canvas>
+-->
+<div  id='dragmove' class="dragmove" color ='red'></div>
+</body>
+</html>
+<script>
+     var divmove=document.getElementById("dragmove"),
+      	 divmove_y = divmove.offsetLeft,
+      	 divmove_x = divmove.offsetTop,
+      	 startx,
+      	 starty;
+       	 e = event || window.event;
+     divmove.style.position = "absolute";
+     console.log(divmove_x);
+     divmove.addEventListener('mousedown', function(e){
+     	startx = e.clientX;
+     	starty = e.clientY;
+    }, false);
+
+      divmove.addEventListener('mouseup', function(e){
+      	this.style.left = e.clientY - startx + "px";
+		this.style.top = e.clientX - starty  + "px";
+    }, false);
+
+
+</script>
