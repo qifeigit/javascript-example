@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui" />
+	<title>下拉菜单</title>
+<style type="text/css">
+body {
+  width:100%;
+  height: 100%;
+}
+html {
+    width:100%;
+  height: 100%;
+    font-family: sans-serif;
+    -webkit-backface-visibility: hidden;
+    -webkit-text-size-adjust: none;
+}
+
+
+ ul{
+    margin-top: 0;
+    padding-left: 0;
+}
+
+ .optionLay{
+    float: right;
+    /*box-sizing: initial;*/
+    overflow: hidden;
+    width: 49%;
+}
+ .olay-opt{
+    float: right;
+    width: 100%;
+    height: 1000px;
+    border-top: 1px solid #ecebeb;
+    background: #fff;
+    font-size: 12px;
+/*  transform: translateY(-269px);
+    -webkit-transform: translateY(-269px);*/
+    transform-style: preserve-3d;
+    backface-visibility: none;
+    transform: translate3d(0,-269px,0);
+    -webkit-transform: translate3d(0,-269px,0);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: none;
+
+    transition: all 7s;
+    -webkit-transition: all 7s;
+    background-color: #000;
+}
+ div.animate{
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    /*transform: translateY(0px);
+    -webkit-transform: translateY(0px);*/
+}
+.dd{
+    -webkit-transform: translate3d(0,80px,0); 
+}
+.option-bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: rgba(0,0,0,0.5);
+}
+.option-view{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 45px;
+    left: 0;
+    padding-bottom: 61px;
+    z-index: 11;
+}
+.btn{
+    left: 0;
+    top:0;
+    height: 40px;
+    width: 49px;
+    background-color: red;
+}
+.main{
+    height: 1000px;
+    width:100%;
+}
+</style>
+
+
+</head>
+
+
+<body>
+    
+    <div id="btn" class="btn"  onclick="ftn();"></div>
+    <div id = 'main'></div>
+</body>
+</html>
+
+<script>
+       function ftn (argument) {
+            var view = document.createElement("div"); 
+            view.innerHTML=''+
+                '<div class="option-view">'+
+                    '<div class="optionLay">'+
+                         '<div class="olay-opt">'+
+                
+                         '</div>'+
+                        '</div>'+
+                    '</div>';
+
+            document.getElementById('main').appendChild(view);
+            var move_view = document.getElementById('main').getElementsByClassName('olay-opt')[0];
+            move_view.className = move_view.className + ' dd';
+            
+        } 
+
+</script>
