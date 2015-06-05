@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui" />
+	<title>下拉菜单</title>
+<style type="text/css">
+body {
+  width:100%;
+  height: 100%;
+}
+html {
+    font-family: sans-serif;
+    -webkit-backface-visibility: hidden;
+    -webkit-text-size-adjust: none;
+}
+
+ .shelf-btn {
+    position: absolute;
+    top: 3px;
+    right: 7px;
+    border: 1px solid #fb6f1b;
+    border-radius: 4px;
+    display: inline-block;
+    height: 23px;
+    line-height: 23px;
+    padding: 0 4px;
+    color: #fb6f1b;
+    font-size: 12px;
+}
+
+ .shelf-btn.add {
+    padding-left: 16px;
+}
+
+ .shelf-btn.added {
+    color: #c5c1bb;
+    border-color: #c5c1bb;
+    /*-webkit-tap-highlight-color: rgba(0,0,0,0);*/
+}
+
+.shelf-btn.add:before {
+    content: "+";
+    position: absolute;
+    top: 0;
+    left: 6px;
+    font-size: 16px;
+    color: #fb6f1b;
+}
+.wenzi {
+  overflow: hidden;
+  margin-right: 12px;
+  /* margin-bottom: 15px; */
+  height: 37px;
+}
+
+/*touchSlide的css*/
+.slideBox{ position:relative; width:100%;  height:152px; overflow:hidden; margin:10px auto; }
+.slideBox .hd{ position:absolute; height:28px; line-height:28px; bottom:0; left:42%; z-index:1; }
+.slideBox .hd li{ display:inline-block; width:5px; height:5px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; background:#333; text-indent:-9999px; overflow:hidden; margin:0 6px;   }
+.slideBox .hd li.on{ background:#fb7a2c; }
+.slideBox .hd li{ background:#e1e0e0; }
+
+ ul{
+    margin-top: 0;
+    padding-left: 0;
+}
+
+</style>
+
+
+</head>
+
+
+<body>
+<div id = "slideBox" class="slideBox" style="display;none">
+<div class="bd">
+
+			<div>
+                <ul style="display:block;overflow: hidden" 
+        			
+        			<dl>
+                    <dt class="sclimg" style="float:left; margin-right:5px" src ="ims.jpg">
+                    
+                    </dt>
+                    <dd class="scltext">
+                        <h3 
+                            style="height:15px;line-height: 15px;padding: 0;border:none;overflow:hidden">
+                            武动乾坤
+                            <span>陈东1</span>
+                        </h3>
+                       
+                            <p style="margin-top:3px">完结</p>
+                         <div class="wenzi">这本书写的 和呐喊哦啊啊啊发啊这本书写的 和呐喊哦啊啊啊发啊这本书写的 和呐喊哦啊啊啊发啊</div>
+                      
+                         
+                      
+                    </dd>
+                    </dl>
+                    <a class="shelf-btn">已添加</a>
+
+                </ul>
+                <ul style="display:block;overflow: hidden" 
+        			
+        			<dl>
+                    <dt class="sclimg" style="float:left; margin-right:5px" src ="ims.jpg">
+                    </dt>
+                    <dd class="scltext">
+                        <h3 
+                            style="height:15px;line-height: 15px;padding: 0;border:none;overflow:hidden">
+                            武动乾坤
+                            <span>陈东2</span>
+                        </h3>
+                       
+                            <p style="margin-top:3px">完结</p>
+                         <div class="wenzi" >这本书写的 和呐喊哦啊啊啊发啊这本书写的 和呐喊哦啊啊啊发啊这本书写的 和呐喊哦啊啊啊发啊</div>
+                      
+                         
+                      
+                    </dd>
+                    </dl>
+                    <a class="shelf-btn">已添加</a>
+
+                </ul>
+                <ul style="display:block;overflow: hidden" 
+        			
+        			<dl>
+                    <dt class="sclimg" style="float:left; margin-right:5px" src ="ims.jpg">
+                    </dt>
+                    <dd class="scltext">
+                        <h3 
+                            style="height:15px;line-height: 15px;padding: 0;border:none;overflow:hidden">
+                            武动乾坤
+                            <span>陈东3</span>
+                        </h3>
+                       
+                            <p style="margin-top:3px">完结</p>
+                         <p class="wenzi">这本书写的 和呐喊哦啊啊啊发啊这本书写的 和呐喊哦啊啊啊发啊这本书写的 和呐喊哦啊啊啊发啊</p>
+                      
+                         
+                      
+                    </dd>
+                    </dl>
+                    <a class="shelf-btn ">已添加</a>
+
+       			 </ul>
+    </div>
+</div>
+
+<div class="hd">
+	<ul>
+	
+	</ul>
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>
+
+<script src="touchslide.js"></script>
+<script>
+            //执行轮播
+            TouchSlide({
+                slideCell: "#slideBox",
+                titCell: ".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+                mainCell: ".bd div",
+                effect: "leftLoop",
+                autoPage: true //自动分页
+            });
+   
+
+
+</script>

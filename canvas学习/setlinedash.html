@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="700" height="750" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+
+		ctx.setLineDash([5, 15]);
+		console.log(ctx.getLineDash()); 
+		ctx.beginPath();
+		ctx.moveTo(0,100);
+		ctx.lineTo(400, 100);
+		ctx.stroke();
+
+
+</script>
+
+</body>
+</html>

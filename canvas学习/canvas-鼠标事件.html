@@ -1,0 +1,106 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui" />
+    <title>画圆</title>
+    <style type="text/css">
+  body {
+    width:100%;
+    height: 100%;
+    background-color: white;
+  }
+  html {
+      font-family: sans-serif;
+      -webkit-backface-visibility: hidden;
+      -webkit-text-size-adjust: none;
+      background-color: white;
+  }
+  .total{
+      height: 900px;
+      width: 100%;
+      background-color: white;
+      position: relative;
+  }
+  .yuan{
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius:50px;
+    background-color: red;
+  }
+  .t1{
+    background-color:red;
+    position: absolute;
+    top:50px;
+    left:50px;
+    width: 100px;
+    height: 100px; 
+    z-index: -1;
+  }
+  </style>
+  </head>
+  <body>
+        <div class="total">
+             <div class="t1"></div>
+              <canvas id = 'canvas' height="400px" width ="400px" style = "border:1px solid #000"></canvas>
+        </div>
+    <!-- <div class="yuan"></div>
+  -->
+  </body>
+  </html>
+  <script>
+     
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var started;
+  //   sc 2.1.0 版本:
+ // jquery源码学习 // canvasAPI学习
+    ctx.fillRect(50,50,100,100);
+    ctx.globalCompositeOperation = "xor";
+
+
+
+    canvas.addEventListener("mousedown", doMouseDown, false); 
+    canvas.addEventListener('mousemove', doMouseMove, false); 
+
+
+    function getPointOnCanvas(canvas, x, y) {
+      var bbox =canvas.getBoundingClientRect();
+      return { x: x- bbox.left *(canvas.width / bbox.width),
+        y:y - bbox.top  * (canvas.height / bbox.height)
+      };
+    } 
+
+    function doMouseDown(event) { 
+      var x = event.pageX; 
+      var y = event.pageY; 
+      var canvas = event.target; 
+      var loc = getPointOnCanvas(canvas, x, y); 
+      console.log("mouse down at point( x:" + loc.x + ", y:" + loc.y + ")"); 
+      ctx.beginPath(); 
+      ctx.moveTo(loc.x, loc.y); 
+      started = true; 
+    }
+
+    function doMouseMove(event) {
+      var x = event.pageX;
+      var y = event.pageY;
+      var canvas = event.target;
+      var loc = getPointOnCanvas(canvas, x, y);
+      if (started) {
+        ctx.lineTo(loc.x, loc.y);
+        ctx.stroke();
+      }
+    }
+    function doMouseUp(event) {
+      console.log("mouse up now");
+      if (started) {
+        doMouseMove(event);
+        started = false;
+      } 
+    }
+
+  </script>

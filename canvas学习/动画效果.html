@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui" />
+  <title>画圆</title>
+<style type="text/css">
+body {
+  width:100%;
+  height: 100%;
+  background-color: white;
+}
+html {
+    font-family: sans-serif;
+    -webkit-backface-visibility: hidden;
+    -webkit-text-size-adjust: none;
+    background-color: white;
+}
+.total{
+    height: 900px;
+    width: 100%;
+    background-color: white;
+}
+.yuan{
+  width: 100px;
+  height: 100px;
+  -webkit-border-radius:50px;
+  background-color: red;
+}
+</style>
+</head>
+<body>
+    <div class="total">
+        <canvas id = 'canvas' height="400px" width ="400px" style = "border:1px solid #000">
+        </canvas>
+    </div>
+    <!-- <div class="yuan"></div> -->
+</body>
+</html>
+<script>
+   
+              var canvas = document.getElementById("canvas");
+          var ctx = canvas.getContext("2d");
+  //             ctx.beginPath();
+  //             ctx.moveTo(10,10);
+  // ctx.lineWidth = 15;
+  //             ctx.lineTo(100, 100);
+  //             ctx.lineCap = "butt";
+  //             ctx.lineCap = "round";
+  //             ctx.lineCap = "square";
+  //             ctx.stroke();
+  
+  //    ctx.clearRect(0,0, canvas.width, canvas.height);
+  //         ctx.lineWidth = 20;
+  //          lineJoin = ['round','bevel','miter'];
+  //         for (var i = 0; i < lineJoin.length; i++) {
+  //           ctx.lineJoin = lineJoin[i];
+  //           ctx.beginPath();
+            
+  //           ctx.moveTo(-5,5+i*40);
+  //           ctx.lineTo(35,45+i*40);
+  //           ctx.lineTo(75,5+i*40);
+  //           ctx.lineTo(115,45+i*40);
+  //           ctx.lineTo(155,5+i*40);
+  //           ctx.stroke();
+  //         }
+    
+    
+    //  ctx.clearRect(0,0, canvas.width, canvas.height);
+    //  ctx.setLineDash([5, 13]);
+    // ctx.lineDashOffset = 0;
+    // ctx.beginPath();
+  
+    // ctx.moveTo(100,100);
+    // ctx.lineTo(300, 100);
+    //   ctx.stroke();
+      
+//   
+
+
+  // ctx.clearRect(0,0, canvas.width, canvas.height);
+
+  
+
+//    ctx.font = "48px serif";
+// ctx.textAlign = "end";
+// ctx.strokeText("Hello world", 100, 100);
+
+  // ctx.fillStyle = "blue";
+  // ctx.globalAlpha = 0.5;
+  // ctx.strokeRect(10, 10, 100, 100);
+  
+  
+  
+//   ctx.shadowColor = "black";
+// ctx.shadowBlur = 100;
+// ctx.fillStyle = "white";
+// ctx.shadowOffsetX = 10;
+// ctx.shadowBlur = 10;
+// ctx.fillRect(10, 10, 100, 100);
+  
+          
+          var canvas = document.getElementById("canvas");
+          var ctx = canvas.getContext("2d");
+
+          ctx.globalCompositeOperation = "xor";
+
+          ctx.fillStyle = "blue";
+          ctx.fillRect(10, 10, 100, 100);
+
+          ctx.fillStyle = "red";
+          ctx.fillRect(50, 50, 100, 100);
+
+</script>

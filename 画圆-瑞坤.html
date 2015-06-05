@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui" />
+	<title>画圆</title>
+<style type="text/css">
+body {
+  width:100%;
+  height: 100%;
+}
+html {
+    font-family: sans-serif;
+    -webkit-backface-visibility: hidden;
+    -webkit-text-size-adjust: none;
+}
+.total{
+    height: 900px;
+    width: 100%;
+}
+.yuan{
+	width: 100px;
+	height: 100px;
+	-webkit-border-radius:50px;
+	background-color: red;
+}
+</style>
+</head>
+<body>
+    <div class="total">
+        <canvas id = 'test' height="400px" width ="400px" style = "border:1px solid #000">
+        </canvas>
+    </div>
+    <!-- <div class="yuan"></div> -->
+</body>
+</html>
+<script>
+    !function(){
+        var test = document.getElementById('test'),
+            context = test.getContext("2d"),
+            t = [50, 60, 70, 70],
+            r = [];
+      /*随机点*/
+      for (var i = 0; i < 4; i++) {
+        r[i] = {};
+        r[i].r = t[i];
+        create(r[i].r, i);
+      }
+      function create(ra, k) {
+        r[k].x = Math.random() * test.width;
+        r[k].y = Math.random() * test.height;
+        can_draw(r[k].x, r[k].y, ra, k) ? draw_yuan(r[k].x, r[k].y, ra, k) : create(ra, k);
+      }
+      function can_draw(x, y, ra, k) {
+        var can_dr = true;
+        if (x - ra < 0 || x + ra > test.width || y - ra < 0 || y + ra > test.height)
+          return false;
+        if (k > 0) {
+          for (var i = 0; i < k; i++) {
+          	console.log((r[i].x - x)*(r[i].x - x)+(r[i].y - y)*(r[i].y - y) -r[i].r);
+          	console.log(Math.pow((r[i].x - x),2)+ Math.pow((r[i].y - y),2));
+            if (Math.pow((r[i].x - x),2) + Math.pow((r[i].y - y),2) < Math.pow((r[i].r + ra),2))
+              return false;
+          }
+        }
+        return can_dr;
+      }
+      function draw_yuan(x, y, ra, k) {
+        context.beginPath();
+        context.globalAlpha = 0.5;
+        context.arc(x, y, ra, 0, Math.PI * 2); //Math.PI*2是JS计算方法，是圆
+        context.fillStyle = "#F123FF";
+        context.fill();
+        context.closePath();
+
+        context.font = "32px Arial";
+        context.globalAlpha = 1;
+        context.fillStyle = "#ffffff";
+        context.fillText("我是", x, y);
+      }
+    }()
+</script>

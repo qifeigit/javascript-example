@@ -1,0 +1,165 @@
+<!-- 针对离散型的数据-折线图 
+    某地平均温度
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui" />
+  <title>画折线图</title>
+<style type="text/css">
+body {
+  width:100%;
+  height: 100%;
+  background-color: white;
+}
+html {
+    font-family: sans-serif;
+    -webkit-backface-visibility: hidden;
+    -webkit-text-size-adjust: none;
+    background-color: white;
+}
+
+</style>
+</head>
+<body>
+
+	<canvas id = 'canvas' height="400px" width ="400px" style = "border:1px solid #000"></canvas>
+	<div style="display:none">
+     <img src="1.jpg" alt="tulip" id="image1" style="margin-left:0px;" />  
+      <img src="2.jpg" alt="tulip" id="image2" style="margin-left:0px;" />  
+       <img src="3.jpg" alt="tulip" id="image3" style="margin-left:0px;" />  
+       <img src="4.jpg" alt="tulip" id="image4" style="margin-left:0px;" /> 
+   </div> 
+</body>
+</html>
+<script>
+      
+    	var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      var y_model = [3,6,2,10,17];
+      var model_coordinate_point_y = [];
+
+      //x,y轴输入的数据类型
+      var x_axis_arr = ['1月','2月','3月','4月','5月'];
+      var y_axis_arr = [0,5,10,15,20];
+
+      var model_coordinate_points = [];
+
+      //x,y轴的在画面上显示的长度和刻度
+      var x_axis_len = 200;
+      var y_axis_len = 100;
+      var x_axis_scale = 30;
+      var y_axis_scale =10;
+
+      var y_axis_arr_cha = 5;
+
+      var y_axis_points = [];
+
+      //创建坐标
+       function Coordinate_point(x,y) {
+          this.x = x;
+          this.y = y;
+      }
+
+      var origin_point = new Coordinate_point(100,300);
+      var x_end_point = new Coordinate_point(100+x_axis_len,300);
+      var y_end_point = new Coordinate_point(100,300-y_axis_len);
+
+      //得到实际y的坐标
+       function change_y(y_model,y_axis_scale) {
+          var temp;
+          for(var i in y_model){
+              temp = y_axis_arr_cha*y_model[i];
+              model_coordinate_point_y[i] = origin_point.y - temp;
+          }
+      }
+    	change_y(y_model,y_axis_scale);
+
+     
+     function get_axis_y (argument) {
+     	 var temp;
+          for(var i in y_model){
+              temp = y_axis_arr_cha*y_axis_arr[i];
+              y_axis_points.push(origin_point.y - temp);
+          }
+     }
+
+     get_axis_y();
+      function create_points (model_coordinate_point_y) {
+        // body...
+        var x = origin_point.x,y;
+          for(var i in model_coordinate_point_y){
+             
+
+            y = model_coordinate_point_y[i];
+            model_coordinate_points.push(new Coordinate_point(x,y));
+            x += x_axis_scale;
+          }
+      }
+      create_points(model_coordinate_point_y);
+      console.log(model_coordinate_points);
+
+
+      function draw_text () {
+      	 	  
+              
+              for(var i in model_coordinate_points){
+              			draw_text_x(model_coordinate_points[i].x,origin_point.y,x_axis_arr[i]);
+              			draw_text_y(origin_point.x,y_axis_points[i],y_axis_arr[i]);
+              }
+      }
+      function draw_text_x (x,y,text) {
+      		ctx.beginPath();
+      		ctx.fillText(text, x, y+10);
+      }
+      function draw_text_y(x,y,text){
+      		ctx.fillText(text, x-15, y);
+      }
+      function draw (obj1,obj2,color) {
+              
+
+
+              ctx.beginPath();
+              ctx.strokeStyle = color;
+              ctx.moveTo(obj1.x, obj1.y);
+              ctx.lineTo(obj2.x, obj2.y);
+              ctx.stroke();
+      }
+
+      function draw_point (obj,color) {
+      		 
+              ctx.fillStyle = color;
+               ctx.beginPath();
+               console.log(ctx.fillStyle);
+           	  ctx.arc(obj.x,obj.y,2,0,Math.PI*2,true); 
+              ctx.fill();
+      	
+      }
+      function draw_points (model_coordinate_points,color) {
+        // body...
+        var len = model_coordinate_points.length;
+        console.log(model_coordinate_points);
+        for(var i =0,j=1 ;j< len;i++,j++){
+            console.log(j,i);
+            draw(model_coordinate_points[i],model_coordinate_points[j],color);
+            draw_point(model_coordinate_points[i],color);
+
+        }
+
+         draw_point(model_coordinate_points[i],color);
+
+      }
+
+
+      draw(origin_point,x_end_point);
+      draw(origin_point,y_end_point);
+      draw_points(model_coordinate_points,'red');
+      draw_text();
+
+
+</script>
