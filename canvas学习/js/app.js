@@ -1,4 +1,3 @@
-
 var canvas = document.getElementById("canvas");
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
@@ -22,12 +21,17 @@ stage.addChild(circle);
 
 
 
-var text4 = new createjs.Text("demo", "bold 30px Arial", "#ff0000");
+var text4 = new createjs.Text("点我", "bold 30px Arial", "#ff0000");
 text4.x = 100;
 text4.y = 100;
 
+rect = new createjs.Shape();
+rect.graphics.beginRadialGradientFill(["white","white"],[0,1],150,150,5,150,150,50);
+rect.graphics.drawRect(100,100,100,50);
+//Set position of Shape instance.
 
-text4.addEventListener("click",clickEvent);
+
+rect.addEventListener("click",clickEvent);
 function clickEvent(event){
     scale *=0.9
 
@@ -39,5 +43,5 @@ function clickEvent(event){
     stage.update();
 }
 
-stage.addChild(text4);
+stage.addChild(rect,text4);
 stage.update();    // 更新舞台，每次修改操作后需要更新真个舞台才有效果
